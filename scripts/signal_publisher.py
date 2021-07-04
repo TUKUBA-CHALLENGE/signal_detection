@@ -13,7 +13,13 @@ class SignalDetecorNode:
     def __init__(self,temp_path):
         rospy.init_node('signal_detector', anonymous=True)
         self.bridge = CvBridge()
-        self.image_sub = rospy.Subscriber("center_cam/image_raw",Image,self.callback, queue_size=1, buff_size=2**24)
+        #self.image_sub = rospy.Subscriber("center_cam/image_raw",Image,self.callback, queue_size=1, buff_size=2**24)
+        # Subscribe
+        #self.sub_camera_rgb    =  rospy.Subscriber('/camera/color/image_raw', Image, self.CamRgbImageCallback)
+        #self.sub_camera_depth  =  rospy.Subscriber('/camera/aligned_depth_to_color/image_raw', Image, self.CamDepthImageCallback)
+        #self.sub_darknet_bbox  =  rospy.Subscriber('/darknet_ros/bounding_boxes', BoundingBoxes, self.DarknetBboxCallback)
+        # D435i image
+        self.image_sub = rospy.Subscriber("/camera/color/image_raw",Image,self.callback, queue_size=1, buff_size=2**24)
         self.signal_pub = rospy.Publisher('signal_info', Int8, queue_size=1)
         self.detection = SignalDetecor(temp_path)
 

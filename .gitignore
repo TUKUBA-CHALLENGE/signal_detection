@@ -5,3 +5,4 @@ results/
 *.mp4
 *.pyc
 *~
+.vscode/

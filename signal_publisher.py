@@ -11,7 +11,9 @@ class SignalDetecorNode:
     def __init__(self):
         rospy.init_node('signal_detector', anonymous=True)
         self.bridge = CvBridge()
-        self.image_sub = rospy.Subscriber("center_cam/image_raw",Image,self.callback)
+        #self.image_sub = rospy.Subscriber("center_cam/image_raw",Image,self.callback)
+        # D435i image
+        self.image_sub = rospy.Subscriber("/camera/color/image_raw",Image,self.callback)
         self.signal_pub = rospy.Publisher('signal_info', Int8, queue_size=10)
         self.detection = SignalDetecor()
 
